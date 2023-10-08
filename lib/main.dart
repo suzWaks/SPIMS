@@ -108,15 +108,37 @@ class _MyExampleState extends State<MyExample> {
         // Define the app's drawer
         child: SingleChildScrollView(
           child: Container(
+            height: MediaQuery.of(context)
+                .size
+                .height, // Provide a height constraint
             child: Column(
               children: [
-                HeaderDrawer(), // Display the header of the drawer, defined in headerdrawer.dart
-                DrawerList(), // Display the list of menu items in the drawer
+                HeaderDrawer(),
+                DrawerList(),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, //Alignt the text to the bottom
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          '3IT Copyrights reserved - 2023',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
+
       backgroundColor: backgroundColor, // Set the scaffold's background color
       body: PageView(
         controller:
