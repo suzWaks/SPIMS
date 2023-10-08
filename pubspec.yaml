@@ -12,6 +12,12 @@ dependencies:
   custom_line_indicator_bottom_navbar: ^0.0.8
   day_night_switcher: ^0.2.0+1
   awesome_drawer_bar: ^1.2.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "Images/cstlogo.png"
 
 dev_dependencies:
   flutter_test:
@@ -21,6 +27,5 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-assets:
-  - lib/Drawer/cstlogo.png
-
+  assets:
+    - Images/cstlogo.png
