@@ -13,6 +13,8 @@ dependencies:
   day_night_switcher: ^0.2.0+1
   awesome_drawer_bar: ^1.2.0
   flutter_launcher_icons: ^0.13.1
+  contained_tab_bar_view: ^0.8.0
+  carousel_slider: ^4.2.1
 
 flutter_icons:
   android: "launcher_icon"
@@ -29,3 +31,9 @@ flutter:
 
   assets:
     - Images/cstlogo.png
+    - Images/Screenshot 2023-07-16 204536.png
+    - Images/Screenshot 2023-07-18 220546.png
+    - Images/Screenshot 2023-07-24 203058.png
+    - Images/Screenshot 2023-07-24 203117.png
+    - Images/Screenshot 2023-08-02 173401.png
+    - Images/Screenshot 2023-08-02 201455.png
