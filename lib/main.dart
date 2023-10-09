@@ -1,4 +1,7 @@
 // Import necessary packages and files
+// import 'package:bottom_nav/AdminPanel/adminHome.dart';
+import 'package:bottom_nav/Lecturers/home.dart';
+import 'package:bottom_nav/Lecturers/mainHome.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
@@ -65,6 +68,7 @@ class _MyExampleState extends State<MyExample> {
     MoneyReceiptPage(),
     AboutUsPage(),
     // AdminHomePage(),
+    LecturerHomePage(),
   ];
 
   bool isDarkModeEnabled = false; // State for enabling dark mode
@@ -225,7 +229,9 @@ class _MyExampleState extends State<MyExample> {
           Divider(),
           menuItem(7, "About", Icons.help_outline_outlined),
           Divider(),
-          menuItem(9, "Admin Panel", Icons.admin_panel_settings_outlined),
+          menuItem(10, "Admin Panel", Icons.admin_panel_settings_outlined),
+          Divider(),
+          menuItem(9, "Lecturer Portal", Icons.boy_outlined),
         ],
       ),
     );

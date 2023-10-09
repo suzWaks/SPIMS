@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class AdminPage extends StatefulWidget {
   @override
-  _AdminPageState createState() => _AdminPageState();
+  State<AdminPage> createState() => _AdminPageState();
 }
 
 class _AdminPageState extends State<AdminPage> {
