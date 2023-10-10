@@ -11,6 +11,7 @@ import 'package:bottom_nav/home.dart';
 import 'package:bottom_nav/medical.dart';
 import 'package:bottom_nav/settings.dart';
 import 'package:bottom_nav/co-curricular.dart';
+import 'package:bottom_nav/AdminPanel/adminhome.dart';
 
 // Entry point of the Flutter application
 void main() {
@@ -63,6 +64,7 @@ class _MyExampleState extends State<MyExample> {
     InternRecordPage(),
     MoneyReceiptPage(),
     AboutUsPage(),
+    AdminHomePage(),
   ];
 
   bool isDarkModeEnabled = false; // State for enabling dark mode
@@ -222,6 +224,8 @@ class _MyExampleState extends State<MyExample> {
           menuItem(6, "Money Receipt", Icons.request_quote_outlined),
           Divider(),
           menuItem(7, "About", Icons.help_outline_outlined),
+          Divider(),
+          menuItem(9, "Admin Panel", Icons.admin_panel_settings_outlined),
         ],
       ),
     );
