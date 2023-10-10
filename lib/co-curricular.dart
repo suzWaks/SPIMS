@@ -13,16 +13,16 @@ final List<String> imgList = [
 
 class CoCurricularPage extends StatelessWidget {
   final CarouselController _carouselController = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color:
-            Color.fromARGB(255, 255, 255, 255), // White background or the tab
+        color: Color.fromARGB(255, 255, 255, 255), // White background or the tab
         width: double.infinity, // Make the tab to fill the screen
         height: double.infinity,
         child: ContainedTabBarView(
-          //Using the pakage contained_tab_bar_view
+          // Using the package contained_tab_bar_view
           tabBarProperties: const TabBarProperties(
             unselectedLabelColor: Color.fromARGB(
                 255, 13, 22, 189), // Color of the unselected label
@@ -41,22 +41,139 @@ class CoCurricularPage extends StatelessWidget {
             // Design for 1st Year Tab
             Container(
               child: Center(
-                  child: CarouselSlider(
-                carouselController:
-                    _carouselController, // Pass the controller here
-                options: CarouselOptions(
-                  enableInfiniteScroll: false,
-                  viewportFraction: 0.8,
-                  initialPage: 0,
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: DataTable(
+                        border: TableBorder.all(
+                            color: Color.fromRGBO(0, 0, 0, 1)),
+                        dataRowColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 255, 255, 255)),
+                        headingRowColor: MaterialStateProperty.all(
+                            Color.fromRGBO(255, 102, 0, 1)),
+                        headingTextStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
+                        columns: const [
+                          DataColumn(
+                            label: Text('Sl.No'),
+                          ),
+                          DataColumn(
+                            label: Text('Name'),
+                          ),
+                          DataColumn(
+                            label: Text('Student Number'),
+                          ),
+                        ],
+                        rows: const [
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                Text('1'),
+                              ),
+                              DataCell(
+                                Text('John Doe'),
+                              ),
+                              DataCell(
+                                Text('12345'),
+                              ),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                Text('2'),
+                              ),
+                              DataCell(
+                                Text('Jane Smith'),
+                              ),
+                              DataCell(
+                                Text('67890'),
+                              ),
+                            ],
+                          ),
+                          // Add more DataRow widgets as needed
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: DataTable(
+                        border: TableBorder.all(
+                            color: Color.fromRGBO(0, 0, 0, 1)),
+                        dataRowColor: MaterialStateProperty.all(
+                            Color.fromARGB(255, 255, 255, 255)),
+                        headingRowColor: MaterialStateProperty.all(
+                            Color.fromRGBO(255, 102, 0, 1)),
+                        headingTextStyle: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromRGBO(255, 255, 255, 1),
+                        ),
+                        columns: const [
+                          DataColumn(
+                            label: Text('Sl.No'),
+                          ),
+                          DataColumn(
+                            label: Text('Name'),
+                          ),
+                          DataColumn(
+                            label: Text('Student Number'),
+                          ),
+                        ],
+                        rows: const [
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                Text('1'),
+                              ),
+                              DataCell(
+                                Text('John Doe'),
+                              ),
+                              DataCell(
+                                Text('12345'),
+                              ),
+                            ],
+                          ),
+                          DataRow(
+                            cells: [
+                              DataCell(
+                                Text('2'),
+                              ),
+                              DataCell(
+                                Text('Jane Smith'),
+                              ),
+                              DataCell(
+                                Text('67890'),
+                              ),
+                            ],
+                          ),
+                          // Add more DataRow widgets as needed
+                        ],
+                      ),
+                    ),
+                    CarouselSlider(
+                      carouselController:
+                          _carouselController, // Pass the controller here
+                      options: CarouselOptions(
+                        enableInfiniteScroll: false,
+                        enlargeCenterPage: true,
+                        enlargeFactor: 0.5,
+                        viewportFraction: 0.8,
+                        initialPage: 0,
+                      ),
+                      items: imgList
+                          .map((item) => Container(
+                                child: Center(
+                                    child: Image.asset(item,
+                                        fit: BoxFit.cover, width: 1000)),
+                              ))
+                          .toList(),
+                    ),
+                  ],
                 ),
-                items: imgList
-                    .map((item) => Container(
-                          child: Center(
-                              child: Image.asset(item,
-                                  fit: BoxFit.cover, width: 1000)),
-                        ))
-                    .toList(),
-              )),
+              ),
             ),
 
             // Design for 2nd Year Tab

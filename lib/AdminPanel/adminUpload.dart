@@ -9,7 +9,7 @@ class AdminUploadPage extends StatefulWidget {
 
 class _AdminUploadPage extends State<AdminUploadPage> {
   bool isDarkModeEnabled = false;
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
   @override
   Widget build(BuildContext context) {
     final backgroundColor = isDarkModeEnabled
@@ -36,8 +36,8 @@ class _AdminUploadPage extends State<AdminUploadPage> {
         flexibleSpace: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                const Color.fromRGBO(0, 40, 168, 1),
+              colors: const [
+                Color.fromRGBO(0, 40, 168, 1),
                 Color.fromARGB(255, 0, 53, 229),
                 Color.fromARGB(255, 0, 43, 183),
               ],
@@ -69,8 +69,8 @@ class _AdminUploadPage extends State<AdminUploadPage> {
           lineIndicatorWidth: 3,
           indicatorType: IndicatorType.Bottom,
           gradient: LinearGradient(
-            colors: [
-              const Color.fromRGBO(0, 40, 168, 1),
+            colors: const [
+              Color.fromRGBO(0, 40, 168, 1),
               Color.fromARGB(255, 0, 53, 229),
               Color.fromARGB(255, 0, 43, 183),
             ],
@@ -85,7 +85,6 @@ class _AdminUploadPage extends State<AdminUploadPage> {
               label: 'Home',
               icon: Icons.home_outlined,
             ),
-
             CustomBottomBarItems(
               label: 'Settings',
               icon: Icons.settings_outlined,
@@ -94,7 +93,82 @@ class _AdminUploadPage extends State<AdminUploadPage> {
         ),
       ),
       body: Center(
-        child: Text('AdminUploadPage'),
+        child: SingleChildScrollView(
+
+          child: Padding(
+            
+            padding: const EdgeInsets.all(10),
+            child: DataTable(
+              border: backgroundColor == Colors.white
+                  ? TableBorder.all(color: Colors.black)
+                  : TableBorder.all(color: Color.fromRGBO(0, 0, 0, 1)),
+              dataRowColor: backgroundColor == Colors.white
+                  ? MaterialStateProperty.all(Color.fromARGB(255, 255, 255, 255))
+                  : MaterialStateProperty.all(Color.fromARGB(255, 226, 220, 220)),
+              headingRowColor: backgroundColor == Colors.white ? MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1)) : MaterialStateProperty.all(Color.fromRGBO(234, 94, 0, 1)),
+              headingTextStyle: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: backgroundColor == Colors.white ? Color.fromRGBO(255, 255, 255, 1) : Color.fromRGBO(255, 255, 255, 1),
+              ),
+              columns: const [
+                DataColumn(
+                  label: Text('Sl.No'),
+                ),
+                DataColumn(
+                  label: Text('Name'),
+                ),
+                DataColumn(
+                  label: Text('Student Number'),
+                ),
+              ],
+              rows: const [
+                DataRow(
+                  cells: [
+                    DataCell(
+                      Text('1'),
+                    ),
+                    DataCell(
+                      Text('John Doe'),
+                    ),
+                    DataCell(
+                      Text('12345'),
+                    ),
+                  ],
+                  
+                ),
+                DataRow(
+                  cells: [
+                    DataCell(
+                      Text('1'),
+                    ),
+                    DataCell(
+                      Text('John Doe'),
+                    ),
+                    DataCell(
+                      Text('12345'),
+                    ),
+                  ],
+                  
+                ),
+                DataRow(
+                  cells: [
+                    DataCell(
+                      Text('1'),
+                    ),
+                    DataCell(
+                      Text('John Doe'),
+                    ),
+                    DataCell(
+                      Text('12345'),
+                    ),
+                  ],
+                  
+                ),
+                // Add more DataRow widgets as needed
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
