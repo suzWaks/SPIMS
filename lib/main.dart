@@ -11,6 +11,7 @@ import 'package:bottom_nav/home.dart';
 import 'package:bottom_nav/medical.dart';
 import 'package:bottom_nav/settings.dart';
 import 'package:bottom_nav/co-curricular.dart';
+import 'package:bottom_nav/AdminPanel/adminhome.dart';
 
 // Entry point of the Flutter application
 void main() {
@@ -58,6 +59,7 @@ class _MyExampleState extends State<MyExample> {
 
   // List of screens that can be navigated to
   final screens = [
+<<<<<<< HEAD
     const CoCurricularPage(),
     const AdminPage(),
     const HomePage(),
@@ -66,6 +68,17 @@ class _MyExampleState extends State<MyExample> {
     const InternRecordPage(),
     const MoneyReceiptPage(),
     const AboutUsPage(),
+=======
+    CoCurricularPage(),
+    AdminPage(),
+    HomePage(),
+    MedicalPage(),
+    SettingsPage(),
+    InternRecordPage(),
+    MoneyReceiptPage(),
+    AboutUsPage(),
+    AdminHomePage(),
+>>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
   ];
 
   bool isDarkModeEnabled = false; // State for enabling dark mode
@@ -111,15 +124,42 @@ class _MyExampleState extends State<MyExample> {
         // Define the app's drawer
         child: SingleChildScrollView(
           child: Container(
+            height: MediaQuery.of(context)
+                .size
+                .height, // Provide a height constraint
             child: Column(
               children: [
+<<<<<<< HEAD
                 const HeaderDrawer(), // Display the header of the drawer, defined in headerdrawer.dart
                 DrawerList(), // Display the list of menu items in the drawer
+=======
+                HeaderDrawer(),
+                DrawerList(),
+                Expanded(
+                  child: Column(
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, //Alignt the text to the bottom
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          '3IT Copyrights reserved - 2023',
+                          style: TextStyle(
+                            color: Colors.grey[600],
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+>>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
               ],
             ),
           ),
         ),
       ),
+
       backgroundColor: backgroundColor, // Set the scaffold's background color
       body: PageView(
         controller:
@@ -203,6 +243,8 @@ class _MyExampleState extends State<MyExample> {
           menuItem(6, "Money Receipt", Icons.request_quote_outlined),
           const Divider(),
           menuItem(7, "About", Icons.help_outline_outlined),
+          Divider(),
+          menuItem(9, "Admin Panel", Icons.admin_panel_settings_outlined),
         ],
       ),
     );

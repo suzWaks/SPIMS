@@ -13,6 +13,10 @@ dependencies:
   day_night_switcher: ^0.2.0+1
   awesome_drawer_bar: ^1.2.0
   flutter_launcher_icons: ^0.13.1
+  contained_tab_bar_view: ^0.8.0
+  carousel_slider: ^4.2.1
+  clickable_list_wheel_view: ^0.2.0
+  horizontal_data_table: ^4.3.1
 
 flutter_icons:
   android: "launcher_icon"
@@ -29,4 +33,10 @@ flutter:
 
   assets:
     - Images/cstlogo.png
+<<<<<<< HEAD
     - Images/settings.jpg
+=======
+    - lib/Drawer/cstlogo.png
+    - images/aboutLogo.jpeg
+    - images/basketball_Login.jpeg
+>>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
