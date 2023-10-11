@@ -86,7 +86,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 // Each container is a grid item
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color.fromRGBO(255, 121, 92, 1),
+                  color: Color.fromARGB(255, 253, 92, 55),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
