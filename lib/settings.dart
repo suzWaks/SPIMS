@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _SettingsPageState createState() => _SettingsPageState();
 }
 
@@ -24,7 +23,7 @@ class _SettingsPageState extends State<SettingsPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50.0),
                 child: Image.asset(
-                  'Images/settings.jpg', // Replace with your image path
+                  'Images/settings.jpg',
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
@@ -32,137 +31,41 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
 
             // Header Text
-            const Positioned(
-              top: 50, // Adjust the top position as needed
+            Positioned(
+              top: 50,
               child: Text(
                 'Settings',
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white, // Set the text color as needed
+                  color: Colors.white,
                 ),
               ),
             ),
 
             // Column of Buttons
             Positioned(
-              top: 200, // Adjust the top position as needed
+              top: 200,
               child: Column(
                 children: <Widget>[
                   // Button 1
-                  Container(
-                    width: 310,
-                    height: 68,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: const Color(0xFFF1F8F8),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
-                        ),
-                      ],
-                    ),
-                    child: const Row(
-                      children: <Widget>[
-                        SizedBox(width: 50), // Adjust spacing as needed
-                        Icon(
-                          Icons.image,
-                          color: Color.fromRGBO(255, 102, 0, 1.0),
-                          size: 30,
-                        ),
-                        SizedBox(width: 20),
-                        Text(
-                          'Change Profilejvw Picture',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Roboto',
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                      ],
-                    ),
+                  buildSettingsButton(
+                    icon: Icons.image,
+                    text: 'Change Profile Picture',
                   ),
                   const SizedBox(height: 30),
 
                   // Button 2
-                  Container(
-                    width: 310,
-                    height: 68,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: const Color(0xFFF1F8F8),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
-                        ),
-                      ],
-                    ),
-                    child: const Row(
-                      children: <Widget>[
-                        SizedBox(width: 50), // Adjust spacing as needed
-                        Icon(
-                          Icons.lock,
-                          color: Color.fromRGBO(255, 102, 0, 1.0),
-                          size: 30,
-                        ),
-                        SizedBox(width: 20),
-                        Text(
-                          'Change Password',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Roboto',
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                      ],
-                    ),
+                  buildSettingsButton(
+                    icon: Icons.lock,
+                    text: 'Change Password',
                   ),
                   const SizedBox(height: 30),
 
                   // Button 3
-                  Container(
-                    width: 310,
-                    height: 68,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20.0),
-                      color: const Color(0xFFF1F8F8),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color.fromRGBO(0, 0, 0, 0.25),
-                          offset: Offset(0, 4),
-                          blurRadius: 4,
-                        ),
-                      ],
-                    ),
-                    child: const Row(
-                      children: <Widget>[
-                        SizedBox(width: 50), // Adjust spacing as needed
-                        Icon(
-                          Icons.visibility_off,
-                          color: Color.fromRGBO(255, 102, 0, 1.0),
-                          size: 30,
-                        ),
-                        SizedBox(width: 20),
-                        Text(
-                          'Manage Visibility',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Roboto',
-                            fontSize: 19,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.normal,
-                          ),
-                        ),
-                      ],
-                    ),
+                  buildSettingsButton(
+                    icon: Icons.visibility_off,
+                    text: 'Manage Visibility',
                   ),
                   const SizedBox(height: 16),
                 ],
@@ -170,6 +73,45 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildSettingsButton({required IconData icon, required String text}) {
+    return Container(
+      width: 310,
+      height: 68,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        color: const Color(0xFFF1F8F8),
+        boxShadow: const [
+          BoxShadow(
+            color: Color.fromRGBO(0, 0, 0, 0.25),
+            offset: Offset(0, 4),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Row(
+        children: <Widget>[
+          const SizedBox(width: 50),
+          Icon(
+            icon,
+            color: Color.fromRGBO(255, 102, 0, 1.0),
+            size: 30,
+          ),
+          const SizedBox(width: 20),
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.black,
+              fontFamily: 'Roboto',
+              fontSize: 19,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.normal,
+            ),
+          ),
+        ],
       ),
     );
   }

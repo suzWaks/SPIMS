@@ -6,7 +6,7 @@ import 'package:day_night_switcher/day_night_switcher.dart';
 import 'package:bottom_nav/Drawer/headerdrawer.dart';
 import 'package:bottom_nav/Drawer/internrecord.dart';
 import 'package:bottom_nav/Drawer/moneyreceipt.dart';
-import 'package:bottom_nav/admin.dart';
+import 'package:bottom_nav/academic.dart';
 import 'package:bottom_nav/home.dart';
 import 'package:bottom_nav/medical.dart';
 import 'package:bottom_nav/settings.dart';
@@ -60,7 +60,7 @@ class _MyExampleState extends State<MyExample> {
   // List of screens that can be navigated to
   final screens = [
     CoCurricularPage(),
-    AdminPage(),
+    AcademicPage(),
     HomePage(),
     MedicalPage(),
     SettingsPage(),

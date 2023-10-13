@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class AdminPage extends StatefulWidget {
-  const AdminPage({Key? key}) : super(key: key);
+class AcademicPage extends StatefulWidget {
+  const AcademicPage({Key? key}) : super(key: key);
 
   @override
   _AdminPageState createState() => _AdminPageState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _AdminPageState extends State<AcademicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -220,6 +220,6 @@ class _AdminPageState extends State<AdminPage> {
 
 void main() {
   runApp(const MaterialApp(
-    home: AdminPage(),
+    home: AcademicPage(),
   ));
 }
