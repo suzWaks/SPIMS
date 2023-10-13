@@ -12,21 +12,6 @@ final List<String> imgList = [
 ];
 
 class CoCurricularPage extends StatelessWidget {
-<<<<<<< HEAD
-  const CoCurricularPage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome to the Co-Curricular Page!',
-              style: TextStyle(fontSize: 24),
-=======
   final CarouselController _carouselController = CarouselController();
 
   @override
@@ -44,7 +29,6 @@ class CoCurricularPage extends StatelessWidget {
             indicator: BoxDecoration(
               color: Color.fromARGB(255, 13, 22,
                   189), // Color of the indicator on the selected tab
->>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
             ),
           ),
           tabs: [

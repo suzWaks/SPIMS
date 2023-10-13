@@ -74,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
                         ),
                         SizedBox(width: 20),
                         Text(
-                          'Change Profile Picture',
+                          'Change Profilejvw Picture',
                           style: TextStyle(
                             color: Colors.black,
                             fontFamily: 'Roboto',

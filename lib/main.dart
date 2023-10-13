@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
-import 'package:bottom_nav/Drawer/aboutus.dart';
+// import 'package:bottom_nav/Drawer/aboutus.dart';
 import 'package:bottom_nav/Drawer/headerdrawer.dart';
 import 'package:bottom_nav/Drawer/internrecord.dart';
 import 'package:bottom_nav/Drawer/moneyreceipt.dart';
@@ -59,16 +59,6 @@ class _MyExampleState extends State<MyExample> {
 
   // List of screens that can be navigated to
   final screens = [
-<<<<<<< HEAD
-    const CoCurricularPage(),
-    const AdminPage(),
-    const HomePage(),
-    const MedicalPage(),
-    const SettingsPage(),
-    const InternRecordPage(),
-    const MoneyReceiptPage(),
-    const AboutUsPage(),
-=======
     CoCurricularPage(),
     AdminPage(),
     HomePage(),
@@ -76,9 +66,8 @@ class _MyExampleState extends State<MyExample> {
     SettingsPage(),
     InternRecordPage(),
     MoneyReceiptPage(),
-    AboutUsPage(),
+    // AboutUsPage(),
     AdminHomePage(),
->>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
   ];
 
   bool isDarkModeEnabled = false; // State for enabling dark mode
@@ -129,10 +118,6 @@ class _MyExampleState extends State<MyExample> {
                 .height, // Provide a height constraint
             child: Column(
               children: [
-<<<<<<< HEAD
-                const HeaderDrawer(), // Display the header of the drawer, defined in headerdrawer.dart
-                DrawerList(), // Display the list of menu items in the drawer
-=======
                 HeaderDrawer(),
                 DrawerList(),
                 Expanded(
@@ -153,7 +138,6 @@ class _MyExampleState extends State<MyExample> {
                     ],
                   ),
                 ),
->>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
               ],
             ),
           ),
