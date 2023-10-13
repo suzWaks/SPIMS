@@ -17,6 +17,8 @@ dependencies:
   carousel_slider: ^4.2.1
   clickable_list_wheel_view: ^0.2.0
   horizontal_data_table: ^4.3.1
+  image_picker: any
+  file_picker: ^4.1.5
 
 flutter_icons:
   android: "launcher_icon"
@@ -34,4 +36,11 @@ flutter:
   assets:
     - Images/cstlogo.png
     - Images/settings.jpg
+    - Images/suz.jpg
+    - Images/pres.png
+    - Images/pres2.png
+    - Images/rec1.jpeg
+    - Images/rec2.jpeg
+    - Images/rec3.jpeg
+
 
