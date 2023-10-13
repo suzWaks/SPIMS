@@ -33,5 +33,7 @@ flutter:
 
   assets:
     - Images/cstlogo.png
-    # - images/aboutLogo.jpeg
-    # - images/basketball_Login.jpeg
+    - images/aboutLogo.jpeg
+    - images/basketball_Login.jpeg
+    - Images/settings.jpg
+

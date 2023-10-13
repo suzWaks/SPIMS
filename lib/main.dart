@@ -29,13 +29,15 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyExample(),
+      home: const MyExample(),
     );
   }
 }
 
 // Define the main widget, MyExample, as a StatefulWidget
 class MyExample extends StatefulWidget {
+  const MyExample({super.key});
+
   @override
   _MyExampleState createState() => _MyExampleState();
 }
@@ -47,6 +49,7 @@ class _MyExampleState extends State<MyExample> {
   int _selectedIndex =
       2; // Default selected index for the bottom navigation bar
 
+  @override
   void initState() {
     super.initState();
     _pageController = PageController(
@@ -56,6 +59,16 @@ class _MyExampleState extends State<MyExample> {
 
   // List of screens that can be navigated to
   final screens = [
+<<<<<<< HEAD
+    const CoCurricularPage(),
+    const AdminPage(),
+    const HomePage(),
+    const MedicalPage(),
+    const SettingsPage(),
+    const InternRecordPage(),
+    const MoneyReceiptPage(),
+    const AboutUsPage(),
+=======
     CoCurricularPage(),
     AdminPage(),
     HomePage(),
@@ -65,6 +78,7 @@ class _MyExampleState extends State<MyExample> {
     MoneyReceiptPage(),
     AboutUsPage(),
     AdminHomePage(),
+>>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
   ];
 
   bool isDarkModeEnabled = false; // State for enabling dark mode
@@ -74,11 +88,11 @@ class _MyExampleState extends State<MyExample> {
     // Determine the background color based on the dark mode state
     final backgroundColor = isDarkModeEnabled
         ? const Color.fromRGBO(52, 52, 52, 1)
-        : Color.fromARGB(255, 255, 255, 255);
+        : const Color.fromARGB(255, 255, 255, 255);
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('CST - SPIMS'),
+        title: const Text('CST - SPIMS'),
         actions: <Widget>[
           // Widget to toggle between light and dark mode
           Transform.scale(
@@ -95,10 +109,10 @@ class _MyExampleState extends State<MyExample> {
         ],
         // Configure the app bar with a flexible space and gradient background
         flexibleSpace: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                const Color.fromRGBO(0, 40, 168, 1),
+                Color.fromRGBO(0, 40, 168, 1),
                 Color.fromARGB(255, 0, 53, 229),
                 Color.fromARGB(255, 0, 43, 183),
               ],
@@ -115,6 +129,10 @@ class _MyExampleState extends State<MyExample> {
                 .height, // Provide a height constraint
             child: Column(
               children: [
+<<<<<<< HEAD
+                const HeaderDrawer(), // Display the header of the drawer, defined in headerdrawer.dart
+                DrawerList(), // Display the list of menu items in the drawer
+=======
                 HeaderDrawer(),
                 DrawerList(),
                 Expanded(
@@ -135,6 +153,7 @@ class _MyExampleState extends State<MyExample> {
                     ],
                   ),
                 ),
+>>>>>>> 24a5d214376e469e51a5fcd742aef0fc9d0ced15
               ],
             ),
           ),
@@ -150,14 +169,14 @@ class _MyExampleState extends State<MyExample> {
       ),
       bottomNavigationBar: ClipRRect(
         // Create a custom bottom navigation bar with line indicator
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20),
           topRight: Radius.circular(20),
         ),
         child: CustomLineIndicatorBottomNavbar(
           // Configure the custom bottom navigation bar
-          selectedColor: Color.fromRGBO(255, 255, 245, 1),
-          unSelectedColor: Color.fromARGB(255, 255, 255, 255),
+          selectedColor: const Color.fromRGBO(255, 255, 245, 1),
+          unSelectedColor: const Color.fromARGB(255, 255, 255, 255),
           backgroundColor: backgroundColor,
           currentIndex: _selectedIndex,
           unselectedIconSize: 30,
@@ -167,16 +186,16 @@ class _MyExampleState extends State<MyExample> {
               _selectedIndex = index;
               _pageController.animateToPage(
                   index, //Navigator for drawer menu items
-                  duration: Duration(milliseconds: 300),
+                  duration: const Duration(milliseconds: 300),
                   curve: Curves.easeInOut);
             });
           },
           enableLineIndicator: true,
           lineIndicatorWidth: 3,
           indicatorType: IndicatorType.Bottom,
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
-              const Color.fromRGBO(0, 40, 168, 1),
+              Color.fromRGBO(0, 40, 168, 1),
               Color.fromARGB(255, 0, 53, 229),
               Color.fromARGB(255, 0, 43, 183),
             ],
@@ -212,7 +231,7 @@ class _MyExampleState extends State<MyExample> {
   // Define a method to create items in the app's drawer
   Widget DrawerList() {
     return Container(
-      padding: EdgeInsets.only(top: 15),
+      padding: const EdgeInsets.only(top: 15),
       child: Column(
         children: [
           menuItem(
@@ -220,9 +239,9 @@ class _MyExampleState extends State<MyExample> {
               "Intern Record",
               Icons
                   .business_center_outlined), //Values passed as parameters to the menuItem method
-          Divider(),
+          const Divider(),
           menuItem(6, "Money Receipt", Icons.request_quote_outlined),
-          Divider(),
+          const Divider(),
           menuItem(7, "About", Icons.help_outline_outlined),
           Divider(),
           menuItem(9, "Admin Panel", Icons.admin_panel_settings_outlined),
@@ -250,7 +269,7 @@ class _MyExampleState extends State<MyExample> {
               .pop(); //To close the drawer after selecting the menu item
         },
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Row(
             //Display the icon and title of the menu item in a single row
             children: [
@@ -265,7 +284,7 @@ class _MyExampleState extends State<MyExample> {
                 flex: 3,
                 child: Text(
                   title,
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
             ],
