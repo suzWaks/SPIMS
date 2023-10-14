@@ -19,6 +19,7 @@ dependencies:
   horizontal_data_table: ^4.3.1
   image_picker: any
   file_picker: ^4.1.5
+  google_fonts: ^6.1.0
 
 flutter_icons:
   android: "launcher_icon"
@@ -42,11 +43,11 @@ flutter:
     - Images/rec1.jpeg
     - Images/rec2.jpeg
     - Images/rec3.jpeg
+    - Images/aboutLogo.jpeg
+    - Images/basketball_Login.jpeg
     - Images/Screenshot 2023-07-16 204536.png
     - Images/Screenshot 2023-07-18 220546.png
     - Images/Screenshot 2023-07-24 203058.png
     - Images/Screenshot 2023-07-24 203117.png
     - Images/Screenshot 2023-08-02 173401.png
     - Images/Screenshot 2023-08-02 201455.png
-
-
