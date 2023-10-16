@@ -20,6 +20,7 @@ dependencies:
   image_picker: any
   file_picker: ^4.1.5
   google_fonts: ^6.1.0
+  flutter_svg: ^2.0.7
 
 flutter_icons:
   android: "launcher_icon"
@@ -43,6 +44,7 @@ flutter:
     - Images/rec1.jpeg
     - Images/rec2.jpeg
     - Images/rec3.jpeg
+    - Images/edit.svg
     - Images/aboutLogo.jpeg
     - Images/basketball_Login.jpeg
     - Images/Screenshot 2023-07-16 204536.png
