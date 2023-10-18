@@ -1,3 +1,3 @@
 # spims
 
-A new Flutter project.
+Student Personal Information Management System
