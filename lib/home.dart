@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color(0xFF202020),
+      backgroundColor: Color.fromARGB(255, 232, 232, 232),
       body: SingleChildScrollView(
         child: Stack(
           children: [
