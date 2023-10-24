@@ -1,6 +1,7 @@
 // Import necessary packages and files
 import 'package:bottom_nav/AdminPanel/adminHome.dart';
 import 'package:bottom_nav/Drawer/aboutus.dart';
+import 'package:bottom_nav/Login/login.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
@@ -15,9 +16,17 @@ import 'package:bottom_nav/settings.dart';
 import 'package:bottom_nav/co-curricular.dart';
 // import 'package:bottom_nav/AdminPanel/adminhome.dart';
 
-// Entry point of the Flutter application
+// // Entry point of the Flutter application
+// void main() {
+//   runApp(const MainApp());
+// }
+
+// To run the Login app
 void main() {
-  runApp(const MainApp());
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: Login(),
+  ));
 }
 
 // Define the main Flutter application
