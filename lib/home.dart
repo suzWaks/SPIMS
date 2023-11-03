@@ -1,4 +1,7 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
+// ignore: unused_import
 import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatefulWidget {

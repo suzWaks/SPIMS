@@ -43,6 +43,7 @@ class _MyHomePageState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     late Color mycolor = Theme.of(context).primaryColor;
+    // ignore: unused_local_variable
     ExampleItemPager pager = ExampleItemPager();
 
     return Scaffold(
