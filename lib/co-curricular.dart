@@ -10,35 +10,37 @@ final List<String> imgList = [
   'Images/Screenshot 2023-08-02 173401.png',
   'Images/Screenshot 2023-08-02 201455.png',
 ];
-
 class CoCurricularPage extends StatelessWidget {
   final CarouselController _carouselController = CarouselController();
+  final bool isDarkModeEnabled;
+
+ CoCurricularPage({Key? key, required this.isDarkModeEnabled}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final textColor = isDarkModeEnabled ? Colors.white : Colors.black;
+    final backgroundColor = isDarkModeEnabled ? const Color.fromARGB(255, 86, 83, 83) : Colors.white;// change this for dark mode
+    final borderColor = isDarkModeEnabled ? Colors.white : Colors.black;
+
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 255, 255, 255), // White background or the tab
-        width: double.infinity, // Make the tab to fill the screen
+        color: backgroundColor,
+        width: double.infinity,
         height: double.infinity,
         child: ContainedTabBarView(
-          // Using the package contained_tab_bar_view
-          tabBarProperties: const TabBarProperties(
-            unselectedLabelColor: Color.fromARGB(
-                255, 13, 22, 189), // Color of the unselected label
+          tabBarProperties: TabBarProperties(
+            unselectedLabelColor: borderColor,
             indicator: BoxDecoration(
-              color: Color.fromARGB(255, 13, 22,
-                  189), // Color of the indicator on the selected tab
+              color: borderColor,
             ),
           ),
           tabs: [
-            Text('1st Year'),
-            Text('2nd Year'),
-            Text('3rd Year'),
-            Text('4th Year'),
+            Text('1st Year', style: TextStyle(color: textColor)),
+            Text('2nd Year', style: TextStyle(color: textColor)),
+            Text('3rd Year', style: TextStyle(color: textColor)),
+            Text('4th Year', style: TextStyle(color: textColor)),
           ],
           views: [
-            // Design for 1st Year Tab
             Container(
               child: Center(
                 child: Column(
@@ -46,15 +48,12 @@ class CoCurricularPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: DataTable(
-                        border: TableBorder.all(
-                            color: Color.fromRGBO(0, 0, 0, 1)),
-                        dataRowColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 255, 255, 255)),
-                        headingRowColor: MaterialStateProperty.all(
-                            Color.fromRGBO(255, 102, 0, 1)),
+                        border: TableBorder.all(color: borderColor),
+                        dataRowColor: MaterialStateProperty.all(backgroundColor),
+                        headingRowColor: MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1)),
                         headingTextStyle: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(255, 255, 255, 1),
+                          color: Colors.white,
                         ),
                         columns: const [
                           DataColumn(
@@ -101,15 +100,12 @@ class CoCurricularPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: DataTable(
-                        border: TableBorder.all(
-                            color: Color.fromRGBO(0, 0, 0, 1)),
-                        dataRowColor: MaterialStateProperty.all(
-                            Color.fromARGB(255, 255, 255, 255)),
-                        headingRowColor: MaterialStateProperty.all(
-                            Color.fromRGBO(255, 102, 0, 1)),
+                        border: TableBorder.all(color: borderColor),
+                        dataRowColor: MaterialStateProperty.all(backgroundColor),
+                        headingRowColor: MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1)),
                         headingTextStyle: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Color.fromRGBO(255, 255, 255, 1),
+                          color: Colors.white,
                         ),
                         columns: const [
                           DataColumn(
@@ -154,8 +150,7 @@ class CoCurricularPage extends StatelessWidget {
                       ),
                     ),
                     CarouselSlider(
-                      carouselController:
-                          _carouselController, // Pass the controller here
+                      carouselController: _carouselController,
                       options: CarouselOptions(
                         enableInfiniteScroll: false,
                         enlargeCenterPage: true,
@@ -166,8 +161,7 @@ class CoCurricularPage extends StatelessWidget {
                       items: imgList
                           .map((item) => Container(
                                 child: Center(
-                                    child: Image.asset(item,
-                                        fit: BoxFit.cover, width: 1000)),
+                                    child: Image.asset(item, fit: BoxFit.cover, width: 1000)),
                               ))
                           .toList(),
                     ),
@@ -175,8 +169,6 @@ class CoCurricularPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            // Design for 2nd Year Tab
             Container(
               color: Colors.green,
               child: Center(
@@ -189,7 +181,6 @@ class CoCurricularPage extends StatelessWidget {
                 ),
               ),
             ),
-            // Design for 3rd Year Tab
             Container(
               color: Color.fromARGB(255, 1, 123, 252),
               child: Center(
@@ -202,7 +193,6 @@ class CoCurricularPage extends StatelessWidget {
                 ),
               ),
             ),
-            // Design for 4th Year Tab
             Container(
               color: Color.fromARGB(255, 255, 220, 20),
               child: Center(

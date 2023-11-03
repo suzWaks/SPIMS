@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class MedicalPage extends StatefulWidget {
-  const MedicalPage({Key? key}) : super(key: key);
+  const MedicalPage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
 
+  final bool isDarkModeEnabled;
   @override
   _MedicalPageState createState() => _MedicalPageState();
 }
@@ -26,7 +27,11 @@ class _MedicalPageState extends State<MedicalPage> {
 
   @override
   Widget build(BuildContext context) {
+ final bool isDarkModeEnabled = widget.isDarkModeEnabled;
     return Scaffold(
+        backgroundColor: isDarkModeEnabled
+      ? const Color.fromRGBO(52, 52, 52, 1)
+      : const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -116,7 +121,9 @@ class _MedicalPageState extends State<MedicalPage> {
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 212, 226, 238),
+                   color: isDarkModeEnabled
+                    ? const Color.fromARGB(255, 30, 30, 30)
+                    : const Color.fromARGB(255, 212, 226, 238),
                 borderRadius: BorderRadius.circular(30.0),
               ),
               padding: const EdgeInsets.all(20),

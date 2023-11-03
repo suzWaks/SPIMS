@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({Key? key}) : super(key: key);
+  final bool isDarkModeEnabled;
+    const SettingsPage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  bool isDarkModeEnabled = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+   backgroundColor: isDarkModeEnabled
+      ? const Color.fromRGBO(52, 52, 52, 1)
+      : const Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Stack(
           alignment: Alignment.center,
@@ -83,7 +89,9 @@ class _SettingsPageState extends State<SettingsPage> {
       height: 68,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
-        color: const Color(0xFFF1F8F8),
+         color: isDarkModeEnabled
+            ? const Color.fromRGBO(52, 52, 52, 1)
+            : const Color(0xFFF1F8F8),
         boxShadow: const [
           BoxShadow(
             color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -104,8 +112,7 @@ class _SettingsPageState extends State<SettingsPage> {
           Text(
             text,
             style: TextStyle(
-              color: Colors.black,
-              fontFamily: 'Roboto',
+              color: isDarkModeEnabled ? Colors.white : Colors.black,
               fontSize: 19,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
@@ -117,8 +124,4 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: SettingsPage(),
-  ));
-}
+
