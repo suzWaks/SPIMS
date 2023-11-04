@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AcademicPage extends StatefulWidget {
-  const AcademicPage({Key? key}) : super(key: key);
+    final bool isDarkModeEnabled;
+      const AcademicPage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
 
   @override
   _AdminPageState createState() => _AdminPageState();
@@ -11,6 +12,9 @@ class _AdminPageState extends State<AcademicPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: widget.isDarkModeEnabled
+      ? const Color.fromARGB(255, 86, 83, 83)
+      : const Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 0.0), // Adjust top padding as needed
@@ -218,8 +222,4 @@ class _AdminPageState extends State<AcademicPage> {
   }
 }
 
-void main() {
-  runApp(const MaterialApp(
-    home: AcademicPage(),
-  ));
-}
+

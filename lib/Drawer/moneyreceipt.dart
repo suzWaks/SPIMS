@@ -8,6 +8,8 @@ final List<String> imgList = [
 ];
 
 class MoneyReceiptPage extends StatefulWidget {
+      final bool isDarkModeEnabled;
+    MoneyReceiptPage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
   final CarouselController _carouselController = CarouselController();
   @override
   _MoneyReceiptPageState createState() => _MoneyReceiptPageState();
@@ -16,7 +18,11 @@ class MoneyReceiptPage extends StatefulWidget {
 class _MoneyReceiptPageState extends State<MoneyReceiptPage> {
   @override
   Widget build(BuildContext context) {
+     final bool isDarkModeEnabled = widget.isDarkModeEnabled;
     return Scaffold(
+         backgroundColor: isDarkModeEnabled
+      ? const Color.fromARGB(255, 86, 83, 83)
+      : const Color.fromARGB(255, 255, 255, 255),
       body: Padding(
         padding: const EdgeInsets.all(20.0), // Adjust the padding as needed
         child: Column(

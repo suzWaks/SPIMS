@@ -30,7 +30,7 @@ class _MedicalPageState extends State<MedicalPage> {
  final bool isDarkModeEnabled = widget.isDarkModeEnabled;
     return Scaffold(
         backgroundColor: isDarkModeEnabled
-      ? const Color.fromRGBO(52, 52, 52, 1)
+      ? const Color.fromARGB(255, 86, 83, 83)
       : const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Column(
@@ -60,7 +60,7 @@ class _MedicalPageState extends State<MedicalPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Suzals Wakhley',
+                          'Suzal Wakhley',
                           style: TextStyle(
                            
                             fontWeight: FontWeight.bold,
@@ -121,9 +121,9 @@ class _MedicalPageState extends State<MedicalPage> {
             Container(
               width: MediaQuery.of(context).size.width - 40,
               decoration: BoxDecoration(
-                   color: isDarkModeEnabled
-                    ? const Color.fromARGB(255, 30, 30, 30)
-                    : const Color.fromARGB(255, 212, 226, 238),
+                     color: widget.isDarkModeEnabled
+            ? const Color.fromRGBO(52, 52, 52, 1)
+            : const Color(0xFFF1F8F8),
                 borderRadius: BorderRadius.circular(30.0),
               ),
               padding: const EdgeInsets.all(20),
@@ -133,7 +133,7 @@ class _MedicalPageState extends State<MedicalPage> {
                   Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   children: [
-    Expanded(
+    const Expanded(
       child: Text(
         'Allergies: Dust & Mites',
         style: TextStyle(
@@ -142,8 +142,8 @@ class _MedicalPageState extends State<MedicalPage> {
       ),
     ),
     IconButton(
-      icon: Icon(Icons.edit),
-      color: Color.fromARGB(255, 240, 106, 17),
+      icon: const Icon(Icons.edit),
+      color: const Color.fromARGB(255, 240, 106, 17),
       onPressed: () {
         // Handle edit button press
       },
@@ -251,7 +251,7 @@ class _MedicalPageState extends State<MedicalPage> {
                     top: 120,
                     child: IconButton(
 
-                      icon: Icon(Icons.arrow_back_outlined),
+                      icon: const Icon(Icons.arrow_back_outlined),
                       color: const Color.fromARGB(255, 255, 102, 0),
                       onPressed: () {
                         _carouselController.previousPage();
@@ -262,7 +262,7 @@ class _MedicalPageState extends State<MedicalPage> {
                     right: 10,
                     top: 120,
                     child: IconButton(
-                      icon: Icon(Icons.arrow_forward_outlined),
+                      icon: const Icon(Icons.arrow_forward_outlined),
                       color: const Color.fromARGB(255, 255, 102, 0),
                       onPressed: () {
                         _carouselController.nextPage();
@@ -280,11 +280,11 @@ class _MedicalPageState extends State<MedicalPage> {
                           Container(
                             width: 10,
                             height: 10,
-                            margin: EdgeInsets.symmetric(horizontal: 2),
+                            margin: const EdgeInsets.symmetric(horizontal: 2),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               color: i == currentPage
-                                  ? Color.fromARGB(255, 255, 102, 0)
+                                  ? const Color.fromARGB(255, 255, 102, 0)
                                   : Colors.grey,
                             ),
                           ),
@@ -305,13 +305,13 @@ class _MedicalPageState extends State<MedicalPage> {
       context: context,
       builder: (context) {
         return Container(
-          padding: EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               _buildEmergencyContact('Mr. X', 'Father', '17614757'),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               _buildEmergencyContact('Mrs. Y', 'Mother', '17118279'),
             ],
           ),
@@ -327,20 +327,20 @@ class _MedicalPageState extends State<MedicalPage> {
       children: [
         Text(
           name,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
         Text(
           relation,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
           ),
         ),
         Text(
           phoneNumber,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
           ),
         ),
@@ -350,6 +350,7 @@ class _MedicalPageState extends State<MedicalPage> {
 
   void _showAddPrescriptionDialog() {
     showDialog(
+      
       context: context,
       builder: (context) {
         return Dialog(
@@ -357,7 +358,7 @@ class _MedicalPageState extends State<MedicalPage> {
             borderRadius: BorderRadius.circular(16),
           ),
           child: Container(
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             height: 200,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -369,13 +370,13 @@ class _MedicalPageState extends State<MedicalPage> {
                       onTap: () {
                         Navigator.pop(context);
                       },
-                      child: Icon(Icons.close),
+                      child: const Icon(Icons.close),
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                Text('Choose an option:'),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
+                const Text('Choose an option:'),
+                const SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: () {
                     // Handle adding prescription from gallery
@@ -385,7 +386,7 @@ class _MedicalPageState extends State<MedicalPage> {
                     primary: const Color.fromARGB(
                         255, 0, 40, 168), // Set your desired color
                   ),
-                  child: Text('Choose from Gallery'),
+                  child: const Text('Choose from Gallery'),
                 ),
                 ElevatedButton(
                   onPressed: () {
@@ -396,7 +397,7 @@ class _MedicalPageState extends State<MedicalPage> {
                     primary: const Color.fromARGB(
                         255, 0, 40, 168), // Set your desired color
                   ),
-                  child: Text('Choose File'),
+                  child: const Text('Choose File'),
                 ),
               ],
             ),

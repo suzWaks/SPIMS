@@ -29,7 +29,6 @@ void main() {
   ));
 }
 
-
 // Define the main Flutter application
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
@@ -48,7 +47,7 @@ class MainApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.grey[900], // Adjust as needed
         // Add other customizations as needed
       ),
-      themeMode: ThemeMode.system, // 
+      themeMode: ThemeMode.system, //
       home: const MyExample(),
     );
   }
@@ -65,7 +64,8 @@ class MyExample extends StatefulWidget {
 class _MyExampleState extends State<MyExample> {
   PageController _pageController =
       PageController(); //Initialize the page controller for drawer menu items
-  int _selectedIndex = 2; // Default selected index for the bottom navigation bar
+  int _selectedIndex =
+      2; // Default selected index for the bottom navigation bar
   bool isDarkModeEnabled = false;
   late CoCurricularPage coCurricularPage;
   @override
@@ -77,26 +77,28 @@ class _MyExampleState extends State<MyExample> {
   }
 
   // List of screens that can be navigated to
-  List<Widget> screens(){
-  return[
-  CoCurricularPage(isDarkModeEnabled: isDarkModeEnabled),
-    AcademicPage(),
-    HomePage(),
-    MedicalPage(isDarkModeEnabled: isDarkModeEnabled),
-    SettingsPage(isDarkModeEnabled: isDarkModeEnabled),
-    InternRecordPage(),
-    MoneyReceiptPage(),
-    AboutUsPage(),
-    AdminHomePage(),
-  ];
+  List<Widget> screens() {
+    return [
+      CoCurricularPage(isDarkModeEnabled: isDarkModeEnabled),
+      AcademicPage(isDarkModeEnabled: isDarkModeEnabled),
+      HomePage(isDarkModeEnabled: isDarkModeEnabled),
+      MedicalPage(isDarkModeEnabled: isDarkModeEnabled),
+      SettingsPage(isDarkModeEnabled: isDarkModeEnabled),
+      InternRecordPage(isDarkModeEnabled: isDarkModeEnabled),
+      MoneyReceiptPage(isDarkModeEnabled: isDarkModeEnabled),
+      AboutUsPage(isDarkModeEnabled: isDarkModeEnabled),
+      AdminHomePage(),
+    ];
   }
+
   Color get backgroundColor => isDarkModeEnabled
       ? const Color.fromRGBO(52, 52, 52, 1)
       : const Color.fromARGB(255, 255, 255, 255);
   @override
   Widget build(BuildContext context) {
     // ignore: unused_local_variable
-    final CoCurricularPage coCurricularPage = CoCurricularPage(isDarkModeEnabled: isDarkModeEnabled);
+    final CoCurricularPage coCurricularPage =
+        CoCurricularPage(isDarkModeEnabled: isDarkModeEnabled);
 
     return Scaffold(
       appBar: AppBar(
@@ -157,67 +159,75 @@ class _MyExampleState extends State<MyExample> {
           ),
         ),
       ),
-      backgroundColor: backgroundColor,
-      body: PageView(
-        controller: _pageController,
-        children: screens(),
-        physics: NeverScrollableScrollPhysics(), // Add this line
+      body: Container(
+        color: isDarkModeEnabled
+            ? Color.fromARGB(255, 86, 83, 83)
+            : Colors.white, // Change the background color here
+        child: PageView(
+          controller: _pageController,
+          children: screens(),
+          physics: NeverScrollableScrollPhysics(),
+        ),
       ),
       bottomNavigationBar: ClipRRect(
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20),
-          topRight: Radius.circular(20),
-        ),
-        child: CustomLineIndicatorBottomNavbar(
-          selectedColor: const Color.fromRGBO(255, 255, 245, 1),
-          unSelectedColor: const Color.fromARGB(255, 255, 255, 255),
-          backgroundColor: backgroundColor,
-          currentIndex: _selectedIndex,
-          unselectedIconSize: 30,
-          selectedIconSize: 35,
-          onTap: (index) {
-            setState(() {
-              _selectedIndex = index;
-              _pageController.animateToPage(
-                index,
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            });
-          },
-          enableLineIndicator: true,
-          lineIndicatorWidth: 3,
-          indicatorType: IndicatorType.Bottom,
-          gradient: const LinearGradient(
-            colors: [
-              Color.fromRGBO(0, 40, 168, 1),
-              Color.fromARGB(255, 0, 53, 229),
-              Color.fromARGB(255, 0, 43, 183),
-            ],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20),
+            topRight: Radius.circular(20),
           ),
-          customBottomBarItems: [
-            CustomBottomBarItems(
-              label: 'Co-curricular',
-              icon: Icons.rocket_launch_outlined,
+            child: Container(
+          child: CustomLineIndicatorBottomNavbar(
+            selectedColor:  Color.fromRGBO(255, 255, 245, 1),
+            unSelectedColor: isDarkModeEnabled
+                ? Color.fromARGB(255, 86, 83, 83)
+                : Color.fromARGB(255, 255, 255, 255),
+            backgroundColor:
+                isDarkModeEnabled ? Color.fromARGB(255, 86, 83, 83) : Colors.white,
+            currentIndex: _selectedIndex,
+            unselectedIconSize: 30,
+            selectedIconSize: 35,
+            onTap: (index) {
+              setState(() {
+                _selectedIndex = index;
+                _pageController.animateToPage(
+                  index,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              });
+            },
+            enableLineIndicator: true,
+            lineIndicatorWidth: 3,
+            indicatorType: IndicatorType.Bottom,
+            gradient: const LinearGradient(
+              colors: [
+                Color.fromRGBO(0, 40, 168, 1),
+                Color.fromARGB(255, 0, 53, 229),
+                Color.fromARGB(255, 0, 43, 183),
+              ],
             ),
-            CustomBottomBarItems(
-              label: 'Academic',
-              icon: Icons.school_outlined,
-            ),
-            CustomBottomBarItems(
-              label: 'Home',
-              icon: Icons.home_outlined,
-            ),
-            CustomBottomBarItems(
-              label: 'Medical',
-              icon: Icons.local_hospital_outlined,
-            ),
-            CustomBottomBarItems(
-              label: 'Settings',
-              icon: Icons.settings_outlined,
-            ),
-          ],
-        ),
+            customBottomBarItems: [
+              CustomBottomBarItems(
+                label: 'Co-curricular',
+                icon: Icons.rocket_launch_outlined,
+              ),
+              CustomBottomBarItems(
+                label: 'Academic',
+                icon: Icons.school_outlined,
+              ),
+              CustomBottomBarItems(
+                label: 'Home',
+                icon: Icons.home_outlined,
+              ),
+              CustomBottomBarItems(
+                label: 'Medical',
+                icon: Icons.local_hospital_outlined,
+              ),
+              CustomBottomBarItems(
+                label: 'Settings',
+                icon: Icons.settings_outlined,
+              ),
+            ],
+          )),
       ),
     );
   }
@@ -225,6 +235,7 @@ class _MyExampleState extends State<MyExample> {
   Widget DrawerList() {
     return Container(
       padding: const EdgeInsets.only(top: 15),
+      color: isDarkModeEnabled ? Color.fromARGB(255, 86, 83, 83) : Colors.white,
       child: Column(
         children: [
           menuItem(5, "Intern Record", Icons.business_center_outlined),
@@ -232,7 +243,7 @@ class _MyExampleState extends State<MyExample> {
           menuItem(6, "Money Receipt", Icons.request_quote_outlined),
           const Divider(),
           menuItem(7, "About", Icons.help_outline_outlined),
-          Divider(),
+          const Divider(),
           menuItem(9, "Admin Panel", Icons.admin_panel_settings_outlined),
         ],
       ),
@@ -242,7 +253,9 @@ class _MyExampleState extends State<MyExample> {
   Widget menuItem(int index, String title, IconData icon) {
     return Material(
       color: index == _selectedIndex
-          ? Colors.grey[200]
+          ? isDarkModeEnabled
+              ? Color.fromARGB(255, 86, 83, 83)
+              : Colors.grey[200]
           : Colors.transparent,
       child: InkWell(
         onTap: () {
@@ -261,14 +274,19 @@ class _MyExampleState extends State<MyExample> {
                 child: Icon(
                   icon,
                   size: 30,
-                  color: const Color.fromRGBO(0, 43, 185, 1),
+                  color: isDarkModeEnabled
+                      ? Colors.white
+                      : const Color.fromRGBO(0, 43, 185, 1),
                 ),
               ),
               Expanded(
                 flex: 3,
                 child: Text(
                   title,
-                  style: const TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(
+                    color: isDarkModeEnabled ? Colors.white : Colors.black,
+                    fontSize: 16,
+                  ),
                 ),
               ),
             ],

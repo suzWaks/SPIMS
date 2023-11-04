@@ -5,20 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+   final bool isDarkModeEnabled;
+      const HomePage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
-}
+}   
 
 class _HomePageState extends State<HomePage> {
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 232, 232, 232),
+       backgroundColor: widget.isDarkModeEnabled
+      ? const Color.fromARGB(255, 86, 83, 83)
+      : const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Stack(
           children: [
@@ -49,7 +53,8 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // Basic Detail Text
-            Positioned(
+            const Positioned( 
+              
               top: 350,
               left: 30,
               right: 0,
@@ -77,7 +82,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // Parents Detail Text
-            Positioned(
+            const Positioned(
               top: 640,
               left: 30,
               right: 0,
@@ -105,7 +110,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             // Further Details Text
-            Positioned(
+            const Positioned(
               top: 870,
               left: 30,
               right: 0,
@@ -140,9 +145,9 @@ class _HomePageState extends State<HomePage> {
 
 // Background box
 Widget _buildBackground() {
-  return Container(
+  return Container(  
     height: 180,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       borderRadius: BorderRadius.only(
         bottomRight: Radius.circular(70),
         bottomLeft: Radius.circular(70),
@@ -163,7 +168,7 @@ Widget _nameCard() {
         Radius.circular(20),
       ),
     ),
-    child: Column(
+    child: const Column(
       children: [
         SizedBox(
           height: 110,
@@ -219,20 +224,20 @@ Widget _basicDetail() {
   return Container(
     height: 230,
     width: 350,
-    decoration: BoxDecoration(
-      color: Color(0xfff0f7f7),
+    decoration: const BoxDecoration(
+      color: Colors.white,
       borderRadius: BorderRadius.all(
         Radius.circular(20),
       ),
     ),
-    child: Stack(
+    child: const Stack(
       alignment: Alignment.center,
       children: [
         Positioned(
           left: 290,
           top: 5,
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             // child: SvgPicture.asset(
             //   'Images.edit.svg',
             // ),
@@ -319,20 +324,20 @@ Widget _parentsDetail() {
   return Container(
     height: 170,
     width: 350,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       color: Color(0xfff0f7f7),
       borderRadius: BorderRadius.all(
         Radius.circular(20),
       ),
     ),
-    child: Stack(
+    child: const Stack(
       alignment: Alignment.center,
       children: [
         Positioned(
           left: 290,
           top: 5,
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             // child: SvgPicture.asset(
             //   'Images.edit.svg',
             // ),
@@ -398,20 +403,20 @@ Widget _furtherDetail() {
   return Container(
     height: 170,
     width: 350,
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       color: Color(0xfff0f7f7),
       borderRadius: BorderRadius.all(
         Radius.circular(20),
       ),
     ),
-    child: Stack(
+    child: const Stack(
       alignment: Alignment.center,
       children: [
         Positioned(
           left: 290,
           top: 5,
           child: Padding(
-            padding: const EdgeInsets.all(10),
+            padding: EdgeInsets.all(10),
             // child: SvgPicture.asset(
             //   'Images.edit.svg',
             // ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class InternRecordPage extends StatefulWidget {
+      final bool isDarkModeEnabled;
+    const InternRecordPage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
   @override
   _InternRecordPageState createState() => _InternRecordPageState();
 }
@@ -8,28 +10,29 @@ class InternRecordPage extends StatefulWidget {
 class _InternRecordPageState extends State<InternRecordPage> {
   @override
   Widget build(BuildContext context) {
+         final bool isDarkModeEnabled = widget.isDarkModeEnabled;
     return Scaffold(
+         backgroundColor: isDarkModeEnabled
+      ? const Color.fromARGB(255, 86, 83, 83)
+      : const Color.fromARGB(255, 255, 255, 255),
       body: Padding(
         padding: const EdgeInsets.all(20.0), // Adjust the padding as needed
         child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.start, // Align content at the top
-          crossAxisAlignment:
-              CrossAxisAlignment.center, // Center the content horizontally
+          mainAxisAlignment:MainAxisAlignment.start, // Align content at the top
+          crossAxisAlignment:CrossAxisAlignment.center, // Center the content horizontally
           children: [
             const Text(
               'Intern Record',
               style: TextStyle(
                 fontSize: 35.0, // Adjust the font size as needed
-                color: Color.fromARGB(
-                    255, 255, 102, 0), // Adjust the color as needed
+                color: Color.fromARGB( 255, 255, 102, 0), // Adjust the color as needed
                 fontFamily: '', // Specify the desired font family
               ),
             ),
             const SizedBox(height: 20),
-            CustomTab(),
+            CustomTab(isDarkModeEnabled: isDarkModeEnabled),
             const SizedBox(height: 16), // Add space between the tabs
-            CustomTab2(),// Add the CustomTab widget here
+            CustomTab2(isDarkModeEnabled: isDarkModeEnabled),// Add the CustomTab widget here
           ],
         ),
       ),
@@ -38,11 +41,18 @@ class _InternRecordPageState extends State<InternRecordPage> {
 }
 
 class CustomTab extends StatelessWidget {
+  final bool isDarkModeEnabled;
+
+  const CustomTab({Key? key, required this.isDarkModeEnabled}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(
+        color: isDarkModeEnabled
+            ? const Color.fromRGBO(52, 52, 52, 1)
+            : const Color(0xFFF1F8F8),
         borderRadius: BorderRadius.circular(30.0),
         border: Border.all(
           color:
@@ -57,7 +67,6 @@ class CustomTab extends StatelessWidget {
             offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
-        color: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -104,11 +113,17 @@ class CustomTab extends StatelessWidget {
   }
 }
 class CustomTab2 extends StatelessWidget {
+   final bool isDarkModeEnabled;
+
+  const CustomTab2({Key? key, required this.isDarkModeEnabled}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.topCenter,
       decoration: BoxDecoration(
+          color: isDarkModeEnabled
+            ? const Color.fromRGBO(52, 52, 52, 1)
+            : const Color(0xFFF1F8F8),
         borderRadius: BorderRadius.circular(30.0),
         border: Border.all(
           color:
@@ -123,7 +138,6 @@ class CustomTab2 extends StatelessWidget {
             offset: const Offset(0, 3), // changes position of shadow
           ),
         ],
-        color: Colors.white,
       ),
       child: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -169,8 +183,4 @@ class CustomTab2 extends StatelessWidget {
     );
   }
 }
-void main() {
-  runApp(MaterialApp(
-    home: InternRecordPage(),
-  ));
-}
+

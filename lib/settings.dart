@@ -9,13 +9,12 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  bool isDarkModeEnabled = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-   backgroundColor: isDarkModeEnabled
-      ? const Color.fromRGBO(52, 52, 52, 1)
+   backgroundColor: widget.isDarkModeEnabled
+      ? const Color.fromARGB(255, 86, 83, 83)
       : const Color.fromARGB(255, 255, 255, 255),
       body: Center(
         child: Stack(
@@ -89,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
       height: 68,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.0),
-         color: isDarkModeEnabled
+         color: widget.isDarkModeEnabled
             ? const Color.fromRGBO(52, 52, 52, 1)
             : const Color(0xFFF1F8F8),
         boxShadow: const [
@@ -112,7 +111,7 @@ class _SettingsPageState extends State<SettingsPage> {
           Text(
             text,
             style: TextStyle(
-              color: isDarkModeEnabled ? Colors.white : Colors.black,
+              color: widget.isDarkModeEnabled ? Colors.white : Colors.black,
               fontSize: 19,
               fontWeight: FontWeight.w400,
               fontStyle: FontStyle.normal,
