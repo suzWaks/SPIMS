@@ -21,6 +21,7 @@ class CoCurricularPage extends StatelessWidget {
     final textColor = isDarkModeEnabled ? Colors.white : Colors.black;
     final backgroundColor = isDarkModeEnabled ? const Color.fromARGB(255, 86, 83, 83) : Colors.white;// change this for dark mode
     final borderColor = isDarkModeEnabled ? Colors.white : Colors.black;
+    
 
     return Scaffold(
       body: Container(
@@ -53,7 +54,7 @@ class CoCurricularPage extends StatelessWidget {
                         headingRowColor: MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1)),
                         headingTextStyle: TextStyle(
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          
                         ),
                         columns: const [
                           DataColumn(
@@ -66,30 +67,30 @@ class CoCurricularPage extends StatelessWidget {
                             label: Text('Student Number'),
                           ),
                         ],
-                        rows: const [
+                        rows: [
                           DataRow(
                             cells: [
                               DataCell(
-                                Text('1'),
+                                Text('1',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
                               ),
                               DataCell(
-                                Text('John Doe'),
+                                Text('John Doe',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
                               ),
                               DataCell(
-                                Text('12345'),
+                                Text('12345',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
                               ),
                             ],
                           ),
                           DataRow(
                             cells: [
                               DataCell(
-                                Text('2'),
+                                Text('2',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
                               ),
                               DataCell(
-                                Text('Jane Smith'),
+                                Text('Jane Smith',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
                               ),
                               DataCell(
-                                Text('67890'),
+                                Text('67890',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
                               ),
                             ],
                           ),
@@ -97,54 +98,54 @@ class CoCurricularPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: DataTable(
-                        border: TableBorder.all(color: borderColor),
-                        dataRowColor: MaterialStateProperty.all(backgroundColor),
-                        headingRowColor: MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1)),
-                        headingTextStyle: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        columns: const [
-                          DataColumn(
-                            label: Text('Sl.No'),
-                          ),
-                          DataColumn(
-                            label: Text('Name'),
-                          ),
-                          DataColumn(
-                            label: Text('Student Number'),
-                          ),
-                        ],
-                        rows: const [
-                          DataRow(
-                            cells: [
-                              DataCell(
-                                Text('1'),
-                              ),
-                              DataCell(
-                                Text('John Doe'),
-                              ),
-                              DataCell(
-                                Text('12345'),
-                              ),
-                            ],
-                          ),
-                          DataRow(
-                            cells: [
-                              DataCell(
-                                Text('2'),
-                              ),
-                              DataCell(
-                                Text('Jane Smith'),
-                              ),
-                              DataCell(
-                                Text('67890'),
-                              ),
-                            ],
-                          ),
+                  Padding(
+  padding: const EdgeInsets.all(10),
+  child: DataTable(
+    border: TableBorder.all(color: borderColor),
+    dataRowColor: MaterialStateProperty.all(backgroundColor),
+    headingRowColor: MaterialStateProperty.all(
+        Color.fromRGBO(255, 102, 0, 1)),
+    headingTextStyle: TextStyle(
+      fontWeight: FontWeight.bold,
+    ),
+    columns: const [
+      DataColumn(
+        label: Text('Sl.No'),
+      ),
+      DataColumn(
+        label: Text('Name'),
+      ),
+      DataColumn(
+        label: Text('Student Number'),
+      ),
+    ],
+    rows: [
+      DataRow(
+        cells: [
+          DataCell(
+            Text('1',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
+          ),
+          DataCell(
+            Text('John Doe', style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
+          ),
+          DataCell(
+            Text('12345', style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
+          ),
+        ],
+      ),
+      DataRow(
+        cells: [
+          DataCell(
+            Text('2',style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
+          ),
+          DataCell(
+            Text('Jane Smith', style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
+          ),
+          DataCell(
+            Text('67890', style: TextStyle(color: isDarkModeEnabled ? Colors.white : Colors.black)),
+          ),
+        ],
+      ),
                           // Add more DataRow widgets as needed
                         ],
                       ),

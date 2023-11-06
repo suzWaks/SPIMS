@@ -28,6 +28,7 @@ class _MedicalPageState extends State<MedicalPage> {
   @override
   Widget build(BuildContext context) {
  final bool isDarkModeEnabled = widget.isDarkModeEnabled;
+  Color textColor = isDarkModeEnabled ? Colors.white : Colors.black;
     return Scaffold(
         backgroundColor: isDarkModeEnabled
       ? const Color.fromARGB(255, 86, 83, 83)
@@ -54,9 +55,9 @@ class _MedicalPageState extends State<MedicalPage> {
                   top: 0,
                   right: 40,
                   child: Container(
-                    padding: const EdgeInsets.all(10),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Column(
+                    padding:  EdgeInsets.all(10),
+                    color:  Color.fromARGB(255, 255, 255, 255),
+                    child:  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -65,6 +66,7 @@ class _MedicalPageState extends State<MedicalPage> {
                            
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                         SizedBox(height: 5),
@@ -73,6 +75,7 @@ class _MedicalPageState extends State<MedicalPage> {
                           style: TextStyle(
                        
                             fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                         Text(
@@ -80,6 +83,7 @@ class _MedicalPageState extends State<MedicalPage> {
                           style: TextStyle(
                         
                             fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                         Text(
@@ -87,6 +91,7 @@ class _MedicalPageState extends State<MedicalPage> {
                           style: TextStyle(
                            
                             fontSize: 20,
+                            color: Colors.black,
                           ),
                         ),
                       ],
@@ -133,11 +138,12 @@ class _MedicalPageState extends State<MedicalPage> {
                   Row(
   mainAxisAlignment: MainAxisAlignment.spaceBetween,
   children: [
-    const Expanded(
+     Expanded(
       child: Text(
         'Allergies: Dust & Mites',
         style: TextStyle(
           fontSize: 18,
+          color: textColor,
         ),
       ),
     ),
@@ -151,23 +157,27 @@ class _MedicalPageState extends State<MedicalPage> {
   ],
 ),
 
-                  const Text(
+                  Text(
                     'Medication:               None',
                     style: TextStyle(
                       fontSize: 18,
+                      color: textColor,
                     ),
                   ),
-                  const Text(
+                   Text(
                     'Seizures/ Strokes:    Never',
                     style: TextStyle(
                       fontSize: 18,
+                      color: textColor,
                     ),
                   ),
                   const SizedBox(height: 10),
                   Container(
                     padding: const EdgeInsets.all(5),
-                    color: const Color.fromARGB(255, 255, 255, 255),
-                    child: const Column(
+                     color: isDarkModeEnabled
+                    ? const Color.fromRGBO(52, 52, 52, 1)
+                    : const Color(0xFFF1F8F8),
+                    child:  Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -176,6 +186,7 @@ class _MedicalPageState extends State<MedicalPage> {
                           'on my journey towards better health.',
                           style: TextStyle(
                             fontSize: 16,
+                            color: textColor,
                           ),
                         ),
                       ],
