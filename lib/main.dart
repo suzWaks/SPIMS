@@ -1,11 +1,10 @@
-// Import necessary packages and files
-import 'package:bottom_nav/AdminPanel/adminHome.dart';
 import 'package:bottom_nav/Drawer/aboutus.dart';
+import 'package:bottom_nav/Lecturer/lecturer.dart';
 import 'package:bottom_nav/Login/login.dart';
+import 'package:bottom_nav/provider/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:custom_line_indicator_bottom_navbar/custom_line_indicator_bottom_navbar.dart';
 import 'package:day_night_switcher/day_night_switcher.dart';
-// import 'package:bottom_nav/Drawer/aboutus.dart';
 import 'package:bottom_nav/Drawer/headerdrawer.dart';
 import 'package:bottom_nav/Drawer/internrecord.dart';
 import 'package:bottom_nav/Drawer/moneyreceipt.dart';
@@ -14,19 +13,68 @@ import 'package:bottom_nav/home.dart';
 import 'package:bottom_nav/medical.dart';
 import 'package:bottom_nav/settings.dart';
 import 'package:bottom_nav/co-curricular.dart';
-// import 'package:bottom_nav/AdminPanel/adminhome.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:provider/provider.dart';
 
-// // Entry point of the Flutter application
-// void main() {
-//   runApp(const MainApp());
-// }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
 
-// To run the Login app
-void main() {
-  runApp(MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: Login(),
-  ));
+  final storage = FlutterSecureStorage(); // Define storage
+
+  // Check if a token exists in secure storage
+  String? token = await storage.read(key: 'token');
+  String? tokenExpirationDate = await storage.read(key: 'tokenExpiration');
+
+  if (token != null && tokenExpirationDate != null) {
+    DateTime expirationDateTime = DateTime.parse(tokenExpirationDate);
+
+    if (expirationDateTime.isAfter(DateTime.now())) {
+      runAppWithProviders('/home');
+    } else {
+      bool refreshTokenSuccess = await refreshToken();
+
+      if (refreshTokenSuccess) {
+        runAppWithProviders('/home');
+      } else {
+        runAppWithProviders('/');
+      }
+    }
+  } else {
+    runAppWithProviders('/');
+  }
+}
+
+Future<bool> refreshToken() async {
+  // Implement token refresh logic here
+  // Update 'token' and 'tokenExpiration' in secure storage upon successful refresh
+  final storage = FlutterSecureStorage();
+  await storage.write(key: 'token', value: 'newTokenValue');
+  await storage.write(key: 'tokenExpiration', value: 'newExpirationDateTime');
+
+  return true; // Return true if refresh is successful, false otherwise
+}
+
+void runAppWithProviders(String initialRoute) {
+  runApp(
+    MultiProvider(
+      providers: [
+        // ChangeNotifierProvider(create: (_) => AuthProvider()),
+        authenticationProvider,
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        initialRoute: initialRoute,
+        routes: {
+          '/': (context) => Login(),
+          '/home': (context) => MyExample(),
+          '/staff': (context) => lecturer(),
+        },
+      ),
+    ),
+  );
 }
 
 // Define the main Flutter application
@@ -40,15 +88,13 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      darkTheme: ThemeData.dark().copyWith(
-        // Customize the dark mode color scheme here
-        primaryColor: Color.fromRGBO(0, 40, 168, 1), // Adjust as needed
-        backgroundColor: Colors.grey[900], // Adjust as needed
-        scaffoldBackgroundColor: Colors.grey[900], // Adjust as needed
-        // Add other customizations as needed
-      ),
-      themeMode: ThemeMode.system, //
-      home: const MyExample(),
+      // Define the routes
+      routes: {
+        '/': (context) => Login(),
+        // Define named routes and associate them with specific widget/screens
+        '/home': (context) => MainApp(),
+      },
+      // home: const MyExample(),
     );
   }
 }
@@ -61,13 +107,13 @@ class MyExample extends StatefulWidget {
   _MyExampleState createState() => _MyExampleState();
 }
 
+// Define the state for MyExample
 class _MyExampleState extends State<MyExample> {
   PageController _pageController =
       PageController(); //Initialize the page controller for drawer menu items
   int _selectedIndex =
-      2; // Default selected index for the bottom navigation bar
-  bool isDarkModeEnabled = false;
-  late CoCurricularPage coCurricularPage;
+      1; // Default selected index for the bottom navigation bar
+
   @override
   void initState() {
     super.initState();
@@ -77,28 +123,25 @@ class _MyExampleState extends State<MyExample> {
   }
 
   // List of screens that can be navigated to
-  List<Widget> screens() {
-    return [
-      CoCurricularPage(isDarkModeEnabled: isDarkModeEnabled),
-      AcademicPage(isDarkModeEnabled: isDarkModeEnabled),
-      HomePage(isDarkModeEnabled: isDarkModeEnabled),
-      MedicalPage(isDarkModeEnabled: isDarkModeEnabled),
-      SettingsPage(isDarkModeEnabled: isDarkModeEnabled),
-      InternRecordPage(isDarkModeEnabled: isDarkModeEnabled),
-      MoneyReceiptPage(isDarkModeEnabled: isDarkModeEnabled),
-      AboutUsPage(isDarkModeEnabled: isDarkModeEnabled),
-      AdminHomePage(),
-    ];
-  }
+  final screens = [
+    CoCurricularPage(),
+    // AcademicPage(),
+    HomePage(),
+    MedicalPage(),
+    SettingsPage(),
+    InternRecordPage(),
+    // MoneyReceiptPage(),
+    AboutUsPage(),
+  ];
 
-  Color get backgroundColor => isDarkModeEnabled
-      ? const Color.fromRGBO(52, 52, 52, 1)
-      : const Color.fromARGB(255, 255, 255, 255);
+  bool isDarkModeEnabled = false; // State for enabling dark mode
+
   @override
   Widget build(BuildContext context) {
-    // ignore: unused_local_variable
-    final CoCurricularPage coCurricularPage =
-        CoCurricularPage(isDarkModeEnabled: isDarkModeEnabled);
+    // Determine the background color based on the dark mode state
+    final backgroundColor = isDarkModeEnabled
+        ? const Color.fromRGBO(52, 52, 52, 1)
+        : const Color.fromARGB(255, 255, 255, 255);
 
     return Scaffold(
       appBar: AppBar(
@@ -117,6 +160,7 @@ class _MyExampleState extends State<MyExample> {
             ),
           ),
         ],
+        // Configure the app bar with a flexible space and gradieant background
         flexibleSpace: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
@@ -130,16 +174,20 @@ class _MyExampleState extends State<MyExample> {
         ),
       ),
       drawer: Drawer(
+        // Define the app's drawer
         child: SingleChildScrollView(
           child: Container(
-            height: MediaQuery.of(context).size.height,
+            height: MediaQuery.of(context)
+                .size
+                .height, // Provide a height constraint
             child: Column(
               children: [
                 HeaderDrawer(),
                 DrawerList(),
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
+                    mainAxisAlignment:
+                        MainAxisAlignment.end, //Alignt the text to the bottom
                     children: [
                       Padding(
                         padding: EdgeInsets.all(16),
@@ -159,134 +207,164 @@ class _MyExampleState extends State<MyExample> {
           ),
         ),
       ),
-      body: Container(
-        color: isDarkModeEnabled
-            ? Color.fromARGB(255, 86, 83, 83)
-            : Colors.white, // Change the background color here
-        child: PageView(
-          controller: _pageController,
-          children: screens(),
-          physics: NeverScrollableScrollPhysics(),
-        ),
+
+      backgroundColor: backgroundColor, // Set the scaffold's background color
+      body: PageView(
+        controller:
+            _pageController, // Display the selected screen from the drawer menu
+        children:
+            screens, // Display the selected screen from the bottom navigation bar OR drawer menu
+        physics: const NeverScrollableScrollPhysics(),
       ),
       bottomNavigationBar: ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(20),
-            topRight: Radius.circular(20),
-          ),
-            child: Container(
-          child: CustomLineIndicatorBottomNavbar(
-            selectedColor:  Color.fromRGBO(255, 255, 245, 1),
-            unSelectedColor: isDarkModeEnabled
-                ? Color.fromARGB(255, 86, 83, 83)
-                : Color.fromARGB(255, 255, 255, 255),
-            backgroundColor:
-                isDarkModeEnabled ? Color.fromARGB(255, 86, 83, 83) : Colors.white,
-            currentIndex: _selectedIndex,
-            unselectedIconSize: 30,
-            selectedIconSize: 35,
-            onTap: (index) {
-              setState(() {
-                _selectedIndex = index;
-                _pageController.animateToPage(
-                  index,
+        // Create a custom bottom navigation bar with line indicator
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+        child: CustomLineIndicatorBottomNavbar(
+          // Configure the custom bottom navigation bar
+          selectedColor: const Color.fromRGBO(255, 255, 245, 1),
+          unSelectedColor: const Color.fromARGB(255, 255, 255, 255),
+          backgroundColor: backgroundColor,
+          currentIndex: _selectedIndex,
+          unselectedIconSize: 30,
+          selectedIconSize: 35,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+              _pageController.animateToPage(
+                  index, //Navigator for drawer menu items
                   duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              });
-            },
-            enableLineIndicator: true,
-            lineIndicatorWidth: 3,
-            indicatorType: IndicatorType.Bottom,
-            gradient: const LinearGradient(
-              colors: [
-                Color.fromRGBO(0, 40, 168, 1),
-                Color.fromARGB(255, 0, 53, 229),
-                Color.fromARGB(255, 0, 43, 183),
-              ],
-            ),
-            customBottomBarItems: [
-              CustomBottomBarItems(
-                label: 'Co-curricular',
-                icon: Icons.rocket_launch_outlined,
-              ),
-              CustomBottomBarItems(
-                label: 'Academic',
-                icon: Icons.school_outlined,
-              ),
-              CustomBottomBarItems(
-                label: 'Home',
-                icon: Icons.home_outlined,
-              ),
-              CustomBottomBarItems(
-                label: 'Medical',
-                icon: Icons.local_hospital_outlined,
-              ),
-              CustomBottomBarItems(
-                label: 'Settings',
-                icon: Icons.settings_outlined,
-              ),
+                  curve: Curves.easeInOut);
+            });
+          },
+          enableLineIndicator: true,
+          lineIndicatorWidth: 3,
+          indicatorType: IndicatorType.Bottom,
+          gradient: const LinearGradient(
+            colors: [
+              Color.fromRGBO(0, 40, 168, 1),
+              Color.fromARGB(255, 0, 53, 229),
+              Color.fromARGB(255, 0, 43, 183),
             ],
-          )),
+          ),
+          customBottomBarItems: [
+            //Bottom Navigation Items
+            CustomBottomBarItems(
+              label: 'Co-curricular',
+              icon: Icons.rocket_launch_outlined,
+            ),
+            // CustomBottomBarItems(
+            //   label: 'Academic',
+            //   icon: Icons.school_outlined,
+            // ),
+            CustomBottomBarItems(
+              label: 'Home',
+              icon: Icons.home_outlined,
+            ),
+            CustomBottomBarItems(
+              label: 'Medical',
+              icon: Icons.local_hospital_outlined,
+            ),
+            CustomBottomBarItems(
+              label: 'Settings',
+              icon: Icons.settings_outlined,
+            ),
+          ],
+        ),
       ),
     );
   }
 
+  // Define a method to create items in the app's drawer
   Widget DrawerList() {
     return Container(
       padding: const EdgeInsets.only(top: 15),
-      color: isDarkModeEnabled ? Color.fromARGB(255, 86, 83, 83) : Colors.white,
       child: Column(
         children: [
-          menuItem(5, "Intern Record", Icons.business_center_outlined),
+          menuItem(
+              4,
+              "Intern Record",
+              Icons
+                  .business_center_outlined), //Values passed as parameters to the menuItem method
+          // const Divider(),
+          // menuItem(6, "Money Receipt", Icons.request_quote_outlined),
           const Divider(),
-          menuItem(6, "Money Receipt", Icons.request_quote_outlined),
+          menuItem(5, "About", Icons.help_outline_outlined),
           const Divider(),
-          menuItem(7, "About", Icons.help_outline_outlined),
-          const Divider(),
-          menuItem(9, "Admin Panel", Icons.admin_panel_settings_outlined),
+          menuItem(6, "Logout", Icons.logout),
         ],
       ),
     );
   }
 
   Widget menuItem(int index, String title, IconData icon) {
+    // Parameters passed from the DrawerList method to create individual menu items
     return Material(
       color: index == _selectedIndex
-          ? isDarkModeEnabled
-              ? Color.fromARGB(255, 86, 83, 83)
-              : Colors.grey[200]
-          : Colors.transparent,
+          ? Colors.grey[200]
+          : Colors.transparent, // Highlight the selected menu item
       child: InkWell(
         onTap: () {
-          setState(() {
-            _selectedIndex = index;
-          });
-          _pageController.jumpToPage(index);
+          if (index == 6) {
+            // Show a confirmation dialog
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text("Logout Confirmation"),
+                  content: Text("Are you sure you want to log out?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context); // Close the dialog
+                      },
+                      child: Text("Cancel"),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        // Logout action
+                        Provider.of<AuthProvider>(context, listen: false)
+                            .logout();
 
-          Navigator.of(context).pop();
+                        // Navigate to the login screen
+                        Navigator.pushReplacementNamed(context, '/');
+                      },
+                      child: Text("Logout"),
+                    ),
+                  ],
+                );
+              },
+            );
+          } else {
+            setState(() {
+              _selectedIndex = index;
+            });
+            _pageController.jumpToPage(
+                index); // Jumps to the page of the selected menu item defined in the screens list
+
+            Navigator.of(context)
+                .pop(); // To close the drawer after selecting the menu item
+          }
         },
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
+            // Display the icon and title of the menu item in a single row
             children: [
               Expanded(
                 child: Icon(
                   icon,
                   size: 30,
-                  color: isDarkModeEnabled
-                      ? Colors.white
-                      : const Color.fromRGBO(0, 43, 185, 1),
+                  color: const Color.fromRGBO(0, 43, 185, 1),
                 ),
               ),
               Expanded(
                 flex: 3,
                 child: Text(
                   title,
-                  style: TextStyle(
-                    color: isDarkModeEnabled ? Colors.white : Colors.black,
-                    fontSize: 16,
-                  ),
+                  style: const TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ),
             ],

@@ -94,21 +94,25 @@ class _AdminUploadPage extends State<AdminUploadPage> {
       ),
       body: Center(
         child: SingleChildScrollView(
-
           child: Padding(
-            
             padding: const EdgeInsets.all(10),
             child: DataTable(
               border: backgroundColor == Colors.white
                   ? TableBorder.all(color: Colors.black)
                   : TableBorder.all(color: Color.fromRGBO(0, 0, 0, 1)),
               dataRowColor: backgroundColor == Colors.white
-                  ? MaterialStateProperty.all(Color.fromARGB(255, 255, 255, 255))
-                  : MaterialStateProperty.all(Color.fromARGB(255, 226, 220, 220)),
-              headingRowColor: backgroundColor == Colors.white ? MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1)) : MaterialStateProperty.all(Color.fromRGBO(234, 94, 0, 1)),
+                  ? MaterialStateProperty.all(
+                      Color.fromARGB(255, 255, 255, 255))
+                  : MaterialStateProperty.all(
+                      Color.fromARGB(255, 226, 220, 220)),
+              headingRowColor: backgroundColor == Colors.white
+                  ? MaterialStateProperty.all(Color.fromRGBO(255, 102, 0, 1))
+                  : MaterialStateProperty.all(Color.fromRGBO(234, 94, 0, 1)),
               headingTextStyle: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: backgroundColor == Colors.white ? Color.fromRGBO(255, 255, 255, 1) : Color.fromRGBO(255, 255, 255, 1),
+                color: backgroundColor == Colors.white
+                    ? Color.fromRGBO(255, 255, 255, 1)
+                    : Color.fromRGBO(255, 255, 255, 1),
               ),
               columns: const [
                 DataColumn(
@@ -134,7 +138,6 @@ class _AdminUploadPage extends State<AdminUploadPage> {
                       Text('12345'),
                     ),
                   ],
-                  
                 ),
                 DataRow(
                   cells: [
@@ -148,7 +151,6 @@ class _AdminUploadPage extends State<AdminUploadPage> {
                       Text('12345'),
                     ),
                   ],
-                  
                 ),
                 DataRow(
                   cells: [
@@ -162,7 +164,6 @@ class _AdminUploadPage extends State<AdminUploadPage> {
                       Text('12345'),
                     ),
                   ],
-                  
                 ),
                 // Add more DataRow widgets as needed
               ],

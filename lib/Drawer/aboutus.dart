@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AboutUsPage extends StatefulWidget {
-    final bool isDarkModeEnabled;
-    const AboutUsPage({Key? key,required this.isDarkModeEnabled}) : super(key: key);
+  const AboutUsPage({super.key});
 
   @override
   State<AboutUsPage> createState() => _AboutUsPageState();
@@ -14,11 +13,7 @@ class AboutUsPage extends StatefulWidget {
 class _AboutUsPageState extends State<AboutUsPage> {
   @override
   Widget build(BuildContext context) {
-     final bool isDarkModeEnabled = widget.isDarkModeEnabled;
     return Scaffold(
-        backgroundColor: isDarkModeEnabled
-      ? const Color.fromARGB(255, 86, 83, 83)
-      : const Color.fromARGB(255, 255, 255, 255),
       body: body(),
     );
   }

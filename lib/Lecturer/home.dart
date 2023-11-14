@@ -1,5 +1,9 @@
+import 'dart:convert';
+
+import 'package:bottom_nav/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:http/http.dart' as http;
 
 class ExampleItem {
   final String title;
@@ -42,9 +46,43 @@ class Home extends StatefulWidget {
 class _MyHomePageState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final TextEditingController _studentNumberController =
+        TextEditingController();
     late Color mycolor = Theme.of(context).primaryColor;
     // ignore: unused_local_variable
     ExampleItemPager pager = ExampleItemPager();
+
+    Future<void> _searchStudent(String studentNumber) async {
+      // Perform the actual API request here
+      try {
+        final fetchresponse = await http.get(
+          Uri.parse(
+              'http://10.2.23.165:8888/api/users/student/0$studentNumber'),
+        );
+        print(studentNumber);
+
+        if (fetchresponse.statusCode == 200) {
+          var studentInfo = jsonDecode(fetchresponse.body);
+
+          // Navigate to the mainscreen
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              // builder: (context) => HomePage(userData: studentInfo),
+              builder: (context) => HomePage(),
+            ),
+          );
+        } else {
+          // Handle error
+        }
+      } catch (error) {
+        // Handle network errors or exceptions
+      }
+      ;
+
+      // For now, let's print the student number
+      print('Searching for student with number: $studentNumber');
+    }
 
     return Scaffold(
       body: ListView(children: [
@@ -138,6 +176,7 @@ class _MyHomePageState extends State<Home> {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30),
                       child: TextField(
+                        controller: _studentNumberController,
                         decoration: InputDecoration(
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
@@ -157,21 +196,6 @@ class _MyHomePageState extends State<Home> {
                                   255, 46, 201, 38), // Focused border color
                             ),
                           ),
-                          // enabledBorder: OutlineInputBorder(
-                          //   borderSide: BorderSide(
-                          //     color: Colors
-                          //         .red, // Change this color to your desired border color
-                          //     width: 0.8,
-                          //   ),
-                          // ),
-                          // focusedBorder: OutlineInputBorder(
-                          //   borderSide: BorderSide(
-                          //     width:
-                          //         2, // Increase the width to make it more prominent when focused
-                          //     color: Color.fromARGB(255, 46, 201,
-                          //         38), // Change this color to your desired focused border color
-                          //   ),
-                          // ),
                           hintText: 'Search Student Number',
                           prefixIcon: Padding(
                             padding: EdgeInsets.all(10),
@@ -180,7 +204,9 @@ class _MyHomePageState extends State<Home> {
                           suffixIcon: IconButton(
                             icon: Icon(Icons.close_sharp),
                             onPressed: () {
-                              // Implement the handling
+                              String studentNumber =
+                                  _studentNumberController.text;
+                              _searchStudent(studentNumber);
                             },
                           ),
                         ),
